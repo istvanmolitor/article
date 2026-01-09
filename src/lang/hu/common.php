@@ -13,4 +13,9 @@ return [
     'article_field_content' => 'Tartalom',
     'article_field_author' => 'Szerző',
     'article_field_article_groups' => 'Cikk csoportok',
+
+    'author_navigation_label' => 'Szerzők',
+    'author_plural_label' => 'Szerzők',
+    'author_model_label' => 'Szerző',
+    'author_field_name' => 'Név',
 ];
