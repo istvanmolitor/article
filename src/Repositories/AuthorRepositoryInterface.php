@@ -12,6 +12,8 @@ interface AuthorRepositoryInterface
 
     public function getById(int $id): ?Author;
 
+    public function getByName(string $name): ?Author;
+
     public function create(array $data): Author;
 
     public function update(Author $author, array $data): bool;

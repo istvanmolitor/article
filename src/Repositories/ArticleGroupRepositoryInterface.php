@@ -11,6 +11,7 @@ interface ArticleGroupRepositoryInterface
     public function all(): Collection;
 
     public function getById(int $id): ?ArticleGroup;
+    public function getByName(string $name): ?ArticleGroup;
 
     public function create(array $data): ArticleGroup;
 

@@ -17,6 +17,11 @@ class AuthorRepository implements AuthorRepositoryInterface
         return Author::find($id);
     }
 
+    public function getByName(string $name): ?Author
+    {
+        return Author::where('name', $name)->first();
+    }
+
     public function create(array $data): Author
     {
         return Author::create($data);

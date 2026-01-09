@@ -17,6 +17,11 @@ class ArticleGroupRepository implements ArticleGroupRepositoryInterface
         return ArticleGroup::find($id);
     }
 
+    public function getByName(string $name): ?ArticleGroup
+    {
+        return ArticleGroup::where('name', $name)->first();
+    }
+
     public function create(array $data): ArticleGroup
     {
         return ArticleGroup::create($data);
