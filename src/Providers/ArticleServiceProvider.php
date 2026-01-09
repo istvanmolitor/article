@@ -3,6 +3,12 @@
 namespace Molitor\Article\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Molitor\Article\Repositories\ArticleGroupRepository;
+use Molitor\Article\Repositories\ArticleGroupRepositoryInterface;
+use Molitor\Article\Repositories\ArticleRepository;
+use Molitor\Article\Repositories\ArticleRepositoryInterface;
+use Molitor\Article\Repositories\AuthorRepository;
+use Molitor\Article\Repositories\AuthorRepositoryInterface;
 
 class ArticleServiceProvider extends ServiceProvider
 {
@@ -14,6 +20,8 @@ class ArticleServiceProvider extends ServiceProvider
 
     public function register()
     {
-
+        $this->app->bind(ArticleRepositoryInterface::class, ArticleRepository::class);
+        $this->app->bind(ArticleGroupRepositoryInterface::class, ArticleGroupRepository::class);
+        $this->app->bind(AuthorRepositoryInterface::class, AuthorRepository::class);
     }
 }
