@@ -18,4 +18,5 @@ return [
     'author_plural_label' => 'Szerzők',
     'author_model_label' => 'Szerző',
     'author_field_name' => 'Név',
+    'navigation_group' => 'Tartalom',
 ];

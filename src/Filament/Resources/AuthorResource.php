@@ -18,6 +18,11 @@ class AuthorResource extends Resource
 {
     protected static ?string $model = Author::class;
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('article::common.navigation_group');
+    }
+
     protected static \BackedEnum|null|string $navigationIcon = 'heroicon-o-user';
 
     public static function getNavigationLabel(): string

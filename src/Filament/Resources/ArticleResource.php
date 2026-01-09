@@ -18,6 +18,11 @@ class ArticleResource extends Resource
 {
     protected static ?string $model = Article::class;
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('article::common.navigation_group');
+    }
+
     protected static \BackedEnum|null|string $navigationIcon = 'heroicon-o-document-text';
 
     public static function getNavigationLabel(): string
