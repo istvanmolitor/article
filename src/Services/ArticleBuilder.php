@@ -4,6 +4,7 @@ namespace Molitor\Article\Services;
 
 use Molitor\Article\Models\Article;
 use Molitor\Article\Repositories\ArticleGroupRepositoryInterface;
+use Molitor\Article\Repositories\ArticleRepositoryInterface;
 use Molitor\Article\Repositories\AuthorRepositoryInterface;
 
 class ArticleBuilder
@@ -14,9 +15,10 @@ class ArticleBuilder
 
     public function __construct(
         private AuthorRepositoryInterface $authorRepository,
-        private ArticleGroupRepositoryInterface $articleGroupRepository
+        private ArticleGroupRepositoryInterface $articleGroupRepository,
+        private ArticleRepositoryInterface $articleRepository
     ) {
-        $this->article = new Article();
+        $this->reset();
     }
 
     public function setTitle(string $title): self
@@ -43,6 +45,18 @@ class ArticleBuilder
     public function setSlug(string $slug): self
     {
         $this->article->slug = $slug;
+
+        return $this;
+    }
+
+    public function loadBySlug(string $slug): self
+    {
+        $article = $this->articleRepository->getBySlug($slug);
+
+        if ($article) {
+            $this->article = $article;
+            $this->articleGroups = $article->articleGroups()->pluck('id')->toArray();
+        }
 
         return $this;
     }
@@ -98,5 +112,22 @@ class ArticleBuilder
         }
 
         return $article;
+    }
+
+    public function save(): Article
+    {
+        $article = $this->get();
+
+        $article->save();
+
+        return $article;
+    }
+
+    public function reset(): self
+    {
+        $this->article = new Article();
+        $this->articleGroups = [];
+
+        return $this;
     }
 }

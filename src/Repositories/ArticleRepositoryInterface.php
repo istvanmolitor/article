@@ -12,6 +12,8 @@ interface ArticleRepositoryInterface
 
     public function getById(int $id): ?Article;
 
+    public function getBySlug(string $slug): ?Article;
+
     public function create(array $data): Article;
 
     public function update(Article $article, array $data): bool;
